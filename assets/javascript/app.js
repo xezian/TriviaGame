@@ -79,8 +79,12 @@ var theGameItself = {
                 for (var i = 0; i < questionPkg[0].answers.length; i++) {
                         var answer = $("<button>");
                         answer.attr("class", "btn btn-info")
-                        answer.attr("index", questionPkg[0].answers.indexOf(questionPkg[0].answers[i]));
                         answer.html(questionPkg[0].answers[i]);
+                        if (questionPkg[0].answers[i] === questionPkg[0].correctAnswer()) {
+                                answer.addClass("correct-answer");
+                        } else {
+                                answer.addClass("incorrect-answer")
+                        }
                         answers.append(answer);
                 }
                 $("#inner-div").append(question);
@@ -88,14 +92,14 @@ var theGameItself = {
                 console.log(theGameItself.todaysQuestions);
         },
         showCorrectAnswer: function() {
-                var correctAnswerFinder = $("#question").attr("correct-answer");
-                
+                var correctAnswer = $("#question").attr("correct-answer");
+                $("#question").html("the answer is: " + correctAnswer);
+                $(".incorrect-answer").remove();
         }
 };
 // on click event listener to start the game
 $(document).on("click", "#start", function(){
         theGameItself.newQuestion();
-        theGameItself.showCorrectAnswer();
 })
 // I want to set up the game itelf as simplified as possible this time so that it can by run by calling functions instead of a giant mess of code like the last game. I will need to use setTimeout and setInterval functions which are new to me so I need to keep everything as tidy as possible around that
 
