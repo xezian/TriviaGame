@@ -14,6 +14,26 @@ var theGameItself = {
         unansweredQuestions: 0,
 // var score (as a percentage?)
         score: 0,
+        timesUp: function() {
+                theGameItself.showCorrectAnswer();
+                $("#middle-message").html(`console.log("Time's Up!")`);
+                theGameItself.unansweredQuestions++;
+                setTimeout(theGameItself.showQuestion, 2000);
+        },
+// variable in which to store setTimeout for the questions
+        questionTime: setTimeout(function() {
+                theGameItself.timesUp();
+        }, 7000),
+        showCorrectAnswer: function() {
+                var correctAnswer = $("#question").attr("correct-answer");
+                $("#question").html("the answer is: " + correctAnswer);
+                $(".incorrect-answer").remove();
+        },
+        showQuestion: function() {
+                theGameItself.newQuestion();
+                $("#middle-message").html(`console.log("You got this.")`);
+                theGameItself.questionTime();
+        },
 // create functions that can be called to run the things the game does like especially the jQuery stuff that interacts with the DOM
         resetScore: function() {
         // reset all the game values
@@ -29,6 +49,9 @@ var theGameItself = {
                 var footer = $("<footer/>");
                 var outer = $("<div/>");
                 var inner = $("<div/>");
+                var topMessage = $("<div/>");
+                var middleMessage = $("<div/>");
+                var bottomMessage = $("<div/>");
                 var startGameButton = $("<button>");
 // header div id and class          
                 header.attr("id", "header");
@@ -45,6 +68,18 @@ var theGameItself = {
 // inner div id and class            
                 inner.attr("id", "inner-div");
                 inner.addClass("row container-fluid justify-content-center");
+// message div id and class
+                topMessage.attr("id", "top-message");
+                topMessage.addClass("row justify-content-center");
+                topMessage.html("var jsTrivia = function() {");
+// middle message div id and class
+                middleMessage.attr("id", "middle-message");
+                middleMessage.addClass("row justify-content-center");
+                middleMessage.html(`console.log("I'm having fun!")`);
+// bottom message div id and class
+                bottomMessage.attr("id", "bottom-message");
+                bottomMessage.addClass("row justify-content-center");
+                bottomMessage.html("};");
 // start game button id and class
                 startGameButton.attr("id", "start");
                 startGameButton.addClass("btn btn-primary");
@@ -53,8 +88,11 @@ var theGameItself = {
                 header.appendTo("body");
                 outer.appendTo($("body"));
                 footer.appendTo("body");
+                topMessage.appendTo(outer);
                 inner.appendTo($(outer));
                 startGameButton.appendTo(inner);
+                middleMessage.appendTo(outer);
+                bottomMessage.appendTo(outer);
         },
 // function whose job it is to initialize the game!
         gameInit: function() {
@@ -78,29 +116,38 @@ var theGameItself = {
                 answers.attr("class", "row container-fluid justify-content-center");
                 for (var i = 0; i < questionPkg[0].answers.length; i++) {
                         var answer = $("<button>");
-                        answer.attr("class", "btn btn-info")
+                        answer.attr("class", "btn btn-info");
                         answer.html(questionPkg[0].answers[i]);
                         if (questionPkg[0].answers[i] === questionPkg[0].correctAnswer()) {
                                 answer.addClass("correct-answer");
                         } else {
-                                answer.addClass("incorrect-answer")
+                                answer.addClass("incorrect-answer");
                         }
                         answers.append(answer);
                 }
                 $("#inner-div").append(question);
                 $("#inner-div").append(answers);
                 console.log(theGameItself.todaysQuestions);
-        },
-        showCorrectAnswer: function() {
-                var correctAnswer = $("#question").attr("correct-answer");
-                $("#question").html("the answer is: " + correctAnswer);
-                $(".incorrect-answer").remove();
         }
 };
 // on click event listener to start the game
 $(document).on("click", "#start", function(){
-        theGameItself.newQuestion();
-})
+        theGameItself.showQuestion();
+});
+$(document).on("click", ".correct-answer", function(){
+        clearTimeout(theGameItself.questionTime);
+        theGameItself.showCorrectAnswer();  
+        $("#middle-message").html(`console.log("Correct!")`);
+        theGameItself.correctAnswers++;
+        setTimeout(theGameItself.showQuestion, 2000);
+});
+$(document).on("click", ".incorrect-answer", function(){
+        clearTimeout(theGameItself.questionTime);
+        theGameItself.showCorrectAnswer();  
+        $("#middle-message").html(`console.log("Wrong!")`);
+        theGameItself.incorrectAnswers++;
+        setTimeout(theGameItself.showQuestion, 2000);
+});
 // I want to set up the game itelf as simplified as possible this time so that it can by run by calling functions instead of a giant mess of code like the last game. I will need to use setTimeout and setInterval functions which are new to me so I need to keep everything as tidy as possible around that
 
 // Lets go over the game structure itself. I imagine user will want to click a start game option first
