@@ -16,14 +16,15 @@ var theGameItself = {
         unansweredQuestions: 0,
 // calculate the score
         score: function() {
-                var perc = this.correctAnswers/this.questionsAmount;
-                perc = perc * 100;
-                return perc;
+                var percent = this.correctAnswers/this.questionsAmount;
+                percent = percent * 100;
+                percent = Math.round(percent, -2);
+                return percent;
         },
 // store a timeout in here?
         questionTime: null,
 // toggle whether or not we already guessed
-        guessOccured: false,
+        guessProhibited: false,
 // This is where I create all of the html divs that will be used to display the game content. I think it's probably harder to do it this way and with no obvious advantages, but I wanted to see if it would work. See how little html I have in my index.html file! 
         createDivs: function() {
 // every div declared
@@ -108,12 +109,11 @@ var theGameItself = {
 // on click event listener to start the game
                 $(document).on("click", "#start", function(){
                         theGameItself.showQuestion();
-                        theGameItself.questionsAmount = theGameItself.todaysQuestions.length;
                         theGameItself.showScore();
                 });
 // on click event listener for correct guesses
                 $(document).on("click", ".correct-answer", function(){
-                        if (guessOccured) {
+                        if (theGameItself.guessProhibited) {
                                 return
                         } else {
                                 theGameItself.guessAttempted();
@@ -124,7 +124,7 @@ var theGameItself = {
                 });
 // on click event listener for incorrect guesses
                 $(document).on("click", ".incorrect-answer", function(){
-                        if (guessOccured) {
+                        if (theGameItself.guessProhibited) {
                                 return
                         } else {
                                 theGameItself.guessAttempted();
@@ -174,6 +174,7 @@ var theGameItself = {
                         .appendTo("#list-body");
         },
         timesUp: function() {
+                this.guessProhibited = true;
                 theGameItself.showCorrectAnswer();
                 $("#middle-message").html(`console.log("Time's Up!")`);
                 theGameItself.unansweredQuestions++;
@@ -193,7 +194,6 @@ var theGameItself = {
                 newImage.appendTo($("#image-div"));
         },
         showQuestion: function() {
-                guessOccured = false;
                 theGameItself.newQuestion();
                 $("#middle-message").html(`console.log("You got this.")`);
                 this.questionTime = setTimeout(function() {
@@ -202,13 +202,16 @@ var theGameItself = {
         },
         guessAttempted: function() {
                 clearTimeout(this.questionTime);
-                guessOccured = true;
+                this.guessProhibited = true;
                 theGameItself.showCorrectAnswer();
                 setTimeout(theGameItself.showQuestion, 2500);
         },
         newQuestion: function() {
 // clear inner div
                 $("#inner-div").empty();
+// add to the questionsAmount
+                this.guessProhibited = false;
+                this.questionsAmount++;
 // find the index of a random quesiton from the array
                 var index = theGameItself.todaysQuestions.indexOf(theGameItself.todaysQuestions[Math.floor(Math.random() * theGameItself.todaysQuestions.length)]);
 // cut the question object (questionPkg) out of the array using splice
@@ -248,7 +251,7 @@ var theGameItself = {
                 console.log(theGameItself.todaysQuestions);
         },
 };
-// here the object ends ^
+// here is where my 'theGameItself' object ends ^
 // on document ready the game begins
 $(document).ready(function() {
         theGameItself.gameInit();
