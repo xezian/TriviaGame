@@ -6,18 +6,26 @@
 var theGameItself = {
 // declare variables as needed to make this thing tick
         todaysQuestions: [],
+// variable to store the number of questions
+        questionsAmount: 0,
 // var correct answer counter
         correctAnswers: 0,
 // var incorrect answer counter
         incorrectAnswers: 0,
 // var unanswered questions
         unansweredQuestions: 0,
-// var score (as a percentage?)
-        score: 0,
+// calculate the score
+        score: function() {
+                var perc = this.correctAnswers/this.questionsAmount;
+                perc = perc * 100;
+                return perc;
+        },
+// store a timeout in here?
         questionTime: null,
+// toggle whether or not we already guessed
         guessOccured: false,
-        createDivs: function() {
 // This is where I create all of the html divs that will be used to display the game content. I think it's probably harder to do it this way and with no obvious advantages, but I wanted to see if it would work. See how little html I have in my index.html file! 
+        createDivs: function() {
 // every div declared
                 var header = $("<div/>");
                 var footer = $("<footer/>");
@@ -27,6 +35,7 @@ var theGameItself = {
                 var middleMessage = $("<div/>");
                 var bottomMessage = $("<div/>");
                 var imageDiv = $("<div/>");
+                var scoreDiv = $("<div/>");
                 var startGameButton = $("<button>");
 // header div id and class
                 header
@@ -66,6 +75,11 @@ var theGameItself = {
                 imageDiv
                         .attr("id", "image-div")
                         .addClass("row justify-content-center");
+// score div id and class
+                scoreDiv
+                        .attr("id", "score-div")
+                        .css({"position":"absolute","top":"15vh","right":"2vw"})
+                        .addClass("card");
 // start game button id and class
                 startGameButton
                         .attr("id", "start")
@@ -80,19 +94,22 @@ var theGameItself = {
                 startGameButton.appendTo(inner);
                 middleMessage.appendTo(outer);
                 bottomMessage.appendTo(outer);
+                scoreDiv.appendTo(outer);
                 imageDiv.appendTo(outer);
         },
 // function whose job it is to initialize the game!
         gameInit: function() {
 // here I copy the questions from my questionVault array (in question-vault.js) into the game file. I want to do this so I can more easily switch out the questions, even store new content in another file and link to that instead
                 theGameItself.todaysQuestions = questionVault.slice();
-// now it's time to set up the Document Object Model again and reset the score
+// now it's time to set up the Document Object Model and reset the score
                 $("body").empty();
                 theGameItself.createDivs();
                 theGameItself.resetScore();
 // on click event listener to start the game
                 $(document).on("click", "#start", function(){
                         theGameItself.showQuestion();
+                        theGameItself.questionsAmount = theGameItself.todaysQuestions.length;
+                        theGameItself.showScore();
                 });
 // on click event listener for correct guesses
                 $(document).on("click", ".correct-answer", function(){
@@ -102,6 +119,7 @@ var theGameItself = {
                                 theGameItself.guessAttempted();
                                 $("#middle-message").html(`console.log("Correct!")`);
                                 theGameItself.correctAnswers++;
+                                theGameItself.showScore();
                         }
                 });
 // on click event listener for incorrect guesses
@@ -112,13 +130,54 @@ var theGameItself = {
                                 theGameItself.guessAttempted();
                                 $("#middle-message").html(`console.log("Wrong!")`);
                                 theGameItself.incorrectAnswers++;
+                                theGameItself.showScore();
                         }
                 });
+        },        
+        resetScore: function() {
+// reset all the game values
+                this.correctAnswers = 0;
+                this.incorrectAnswers = 0;
+                this.unansweredQuestions = 0;
+        },
+        showScore: function() {
+                $("#score-div").empty();
+                var title = $("<div/>");
+                var body = $("<ul/>");
+                var wrong = $("<li/>");
+                var unanswered = $("<li/>");
+                var right = $("<li/>");
+                var score = $("<li/>");
+                title
+                        .addClass("card-title justify-content-center")
+                        .html("Score:")
+                        .appendTo($("#score-div"));
+                body
+                        .addClass("list-group list-group-flush")
+                        .attr("id", "list-body")
+                        .appendTo($("#score-div"));
+                wrong
+                        .addClass("list-group-item")
+                        .html(`wrong answers: ${this.incorrectAnswers}`)
+                        .appendTo("#list-body");
+                unanswered
+                        .addClass("list-group-item")
+                        .html(`unanswered: ${this.unansweredQuestions}`)
+                        .appendTo("#list-body");
+                right
+                        .addClass("list-group-item")
+                        .html(`correct answers: ${this.correctAnswers}`)
+                        .appendTo("#list-body");
+                score
+                        .addClass("list-group-item")
+                        .html(`score: ${(this.score())}%`)
+                        .appendTo("#list-body");
         },
         timesUp: function() {
                 theGameItself.showCorrectAnswer();
                 $("#middle-message").html(`console.log("Time's Up!")`);
                 theGameItself.unansweredQuestions++;
+                theGameItself.showScore();
                 setTimeout(theGameItself.showQuestion, 2500);
         },
         showCorrectAnswer: function() {
@@ -137,7 +196,6 @@ var theGameItself = {
                 guessOccured = false;
                 theGameItself.newQuestion();
                 $("#middle-message").html(`console.log("You got this.")`);
-// variable in which to store setTimeout for the questions
                 this.questionTime = setTimeout(function() {
                         theGameItself.timesUp();
                         }, 10000);
@@ -147,14 +205,6 @@ var theGameItself = {
                 guessOccured = true;
                 theGameItself.showCorrectAnswer();
                 setTimeout(theGameItself.showQuestion, 2500);
-        },
-// create functions that can be called to run the things the game does like especially the jQuery stuff that interacts with the DOM
-        resetScore: function() {
-// reset all the game values
-                this.correctAnswers = 0;
-                this.incorrectAnswers = 0;
-                this.unansweredQuestions = 0;
-                this.score = 0;
         },
         newQuestion: function() {
 // clear inner div
