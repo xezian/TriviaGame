@@ -24,16 +24,16 @@ var questionVault = [
                 return this.answers[2];
             },
             image: "http://placehold.it/200",
-            alt: "A"
+            alt: "Picture of a Mocha"
         },
         {
-            question: "",
+            question: "Which one is 'F'?",
             answers: ["E", "W", "A", "F"],
             correctAnswer: function() {
                 return this.answers[3];
             },
             image: "http://placehold.it/200",
-            alt: "A"
+            alt: "F"
         },
         {
             question: "Which one is 'E'",
@@ -42,7 +42,7 @@ var questionVault = [
                 return this.answers[0];
             },
             image: "http://placehold.it/200",
-            alt: "A"
+            alt: "E"
         },
         {
             question: "Which one is 'W'",
@@ -51,7 +51,7 @@ var questionVault = [
                 return this.answers[1];
             },
             image: "http://placehold.it/200",
-            alt: "A"
+            alt: "W"
         },
         {
             question: "Which one is 'R'",
@@ -60,7 +60,7 @@ var questionVault = [
                 return this.answers[1];
             },
             image: "http://placehold.it/200",
-            alt: "A"
+            alt: "R"
         },
         {
             question: "Which one is 'L'",
@@ -69,7 +69,7 @@ var questionVault = [
                 return this.answers[3];
             },
             image: "http://placehold.it/200",
-            alt: "A"
+            alt: "L"
         },
         {
             question: "Which one is 'Q'",
@@ -78,7 +78,7 @@ var questionVault = [
                 return this.answers[2];
             },
             image: "http://placehold.it/200",
-            alt: "A"
+            alt: "Q"
         },
         {
             question: "Which one is 'S'",
@@ -87,7 +87,7 @@ var questionVault = [
                 return this.answers[0];
             },
             image: "http://placehold.it/200",
-            alt: "A"
+            alt: "S"
         },
         {
             question: "Which one is 'J'",
@@ -96,7 +96,7 @@ var questionVault = [
                 return this.answers[3];
             },
             image: "http://placehold.it/200",
-            alt: "A"
+            alt: "J"
         },
         {
             question: "Which one is 'K'",
@@ -105,7 +105,7 @@ var questionVault = [
                 return this.answers[2];
             },
             image: "http://placehold.it/200",
-            alt: "A"
+            alt: "K"
         },
         {
             question: "Which one is 'N'",
@@ -114,7 +114,7 @@ var questionVault = [
                 return this.answers[0];
             },
             image: "http://placehold.it/200",
-            alt: "A"
+            alt: "N"
         },
         {
             question: "Which one is 'X'",
@@ -123,7 +123,7 @@ var questionVault = [
                 return this.answers[1];
             },
             image: "http://placehold.it/200",
-            alt: "A"
+            alt: "X"
         },
         {
             question: "Which one is 'M'",
@@ -132,7 +132,7 @@ var questionVault = [
                 return this.answers[3];
             },
             image: "http://placehold.it/200",
-            alt: "A"
+            alt: "M"
         },
         {
             question: "Which one is 'B'",
@@ -141,7 +141,7 @@ var questionVault = [
                 return this.answers[1];
             },
             image: "http://placehold.it/200",
-            alt: "A"
+            alt: "B"
         },
         {
             question: "Which one is 'P'",
@@ -150,6 +150,6 @@ var questionVault = [
                 return this.answers[0];
             },
             image: "http://placehold.it/200",
-            alt: "A"
+            alt: "P"
         },
     ]
