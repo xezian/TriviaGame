@@ -18,8 +18,8 @@ var questionVault = [
             alt: "Very random picture"
         },
         {
-            question: "Which one is 'A'",
-            answers: ["E", "W", "A", "F"],
+            question: "What is the name JavaScript went by during development?",
+            answers: ["ProtoScript", "CoffeeBuzz", "Mocha", "Netscape"],
             correctAnswer: function() {
                 return this.answers[2];
             },
@@ -27,7 +27,7 @@ var questionVault = [
             alt: "A"
         },
         {
-            question: "Which one is 'F'",
+            question: "",
             answers: ["E", "W", "A", "F"],
             correctAnswer: function() {
                 return this.answers[3];
