@@ -108,10 +108,17 @@ var theGameItself = {
                 $("body").empty();
                 theGameItself.createDivs();
                 theGameItself.resetScore();
+                theGameItself.gameActions();
+        },
+        gameActions: function() {
                 // on click event listener to start the game
                 $(document).on("click", "#start", function(){
                         theGameItself.showQuestion();
                         theGameItself.showScore();
+                });
+                // on click event listener to start the game
+                $(document).on("click", "#start-over", function(){
+                        theGameItself.gameInit();
                 });
                 // on click event listener for correct guesses
                 $(document).on("click", ".correct-answer", function(){
@@ -215,46 +222,56 @@ var theGameItself = {
         newQuestion: function() {
                 // clear inner div
                 $("#inner-div").empty();
-                // add to the questionsAmount
-                this.guessProhibited = false;
-                this.questionsAmount++;
-                // find the index of a random quesiton from the array
-                var index = theGameItself.todaysQuestions.indexOf(theGameItself.todaysQuestions[Math.floor(Math.random() * theGameItself.todaysQuestions.length)]);
-                // cut the question object (questionPkg) out of the array using splice
-                var questionPkg = theGameItself.todaysQuestions.splice(index, 1);
-                // create a div for the question
-                var question = $("<div/>");
-                question.attr("id", "question")
-                // add a url for an image I can pull off the html object later
-                question
-                        .attr("correct-answer", questionPkg[0].correctAnswer())
-                        .attr("image-url", questionPkg[0].image)
-                        .attr("class", "row container-fluid justify-content-center")
-                // display the question
-                        .html(`var question = "${questionPkg[0].question}"`)
-                        .appendTo($("#inner-div"));
-                // for loop to create individual html elements representing the answers
-                for (var i = 0; i < questionPkg[0].answers.length; i++) {
-                        var answer = $("<button>");
-                        answer.attr("class", "btn btn-info");
-                // display the answer
-                        var answers = $("<div/>");
-                        answers.attr("class", "row container-fluid justify-content-center");
-                        answer
-                                .html(questionPkg[0].answers[i])
-                                .addClass("row justify-content-center")
-                                .css({"margin": "10px"});
-                // if the answer is correct label it correct
-                        if (questionPkg[0].answers[i] === questionPkg[0].correctAnswer()) {
-                                answer.addClass("correct-answer");
-                // if the answer is incorrect label it incorrect
-                        } else {
-                                answer.addClass("incorrect-answer");
+                if (theGameItself.todaysQuestions.length <= 0) {
+                        var startOver = $("<button/>");
+                        startOver
+                                .attr("id", "start-over")
+                                .addClass("btn btn-primary")
+                                .html("Start Over?")
+                                .appendTo("#inner-div");
+                        $("#middle-message").html(`console.log("There's no more questions!")`)         
+                } else {
+                        // add to the questionsAmount
+                        this.guessProhibited = false;
+                        this.questionsAmount++;
+                        // find the index of a random quesiton from the array
+                        var index = theGameItself.todaysQuestions.indexOf(theGameItself.todaysQuestions[Math.floor(Math.random() * theGameItself.todaysQuestions.length)]);
+                        // cut the question object (questionPkg) out of the array using splice
+                        var questionPkg = theGameItself.todaysQuestions.splice(index, 1);
+                        // create a div for the question
+                        var question = $("<div/>");
+                        question
+                                .attr("id", "question")
+                                .attr("correct-answer", questionPkg[0].correctAnswer())
+                        // add a url for an image I can pull off the html object later
+                                .attr("image-url", questionPkg[0].image)
+                                .attr("class", "row container-fluid justify-content-center")
+                        // display the question
+                                .html(`var question = "${questionPkg[0].question}"`)
+                                .appendTo($("#inner-div"));
+                        // for loop to create individual html elements representing the answers
+                        for (var i = 0; i < questionPkg[0].answers.length; i++) {
+                                var answer = $("<button>");
+                                answer.attr("class", "btn btn-info");
+                        // display the answer
+                                var answers = $("<div/>");
+                                answers.attr("class", "row container-fluid justify-content-center");
+                                answer
+                                        .html(questionPkg[0].answers[i])
+                                        .addClass("row justify-content-center")
+                                        .css({"margin": "10px"});
+                        // if the answer is correct label it correct
+                                if (questionPkg[0].answers[i] === questionPkg[0].correctAnswer()) {
+                                        answer.addClass("correct-answer");
+                        // if the answer is incorrect label it incorrect
+                                } else {
+                                        answer.addClass("incorrect-answer");
+                                }
+                                answers.append(answer);
+                                $("#inner-div").append(answers);
                         }
-                        answers.append(answer);
-                        $("#inner-div").append(answers);
-                }
-                console.log(theGameItself.todaysQuestions);
+                        console.log(theGameItself.todaysQuestions);
+                };
         },
 };
 // here is where my 'theGameItself' object ends ^
