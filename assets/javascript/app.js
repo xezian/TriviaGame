@@ -21,7 +21,7 @@ var theGameItself = {
         guessProhibited: false,
 // funcitons section:
         // calculate the score
-        score: function() {
+        calculateScore: function() {
                 var percent = this.correctAnswers/this.questionsAmount;
                 percent = percent * 100;
                 percent = Math.round(percent, -2);
@@ -173,7 +173,7 @@ var theGameItself = {
                         .appendTo("#list-body");
                 score
                         .addClass("list-group-item")
-                        .html(`score: ${(this.score())}%`)
+                        .html(`score: ${this.calculateScore()}%`)
                         .appendTo("#list-body");
         },
         // function to run when you've run out of time on a question
@@ -183,7 +183,7 @@ var theGameItself = {
                 $("#middle-message").html(`console.log("Time's Up!")`);
                 theGameItself.unansweredQuestions++;
                 theGameItself.showScore();
-                setTimeout(theGameItself.showQuestion, 2500);
+                window.setTimeout(theGameItself.showQuestion, 2500);
         },
         // function to display the correct answer when you either guess right, wrong, or run out of time
         showCorrectAnswer: function() {
@@ -193,7 +193,7 @@ var theGameItself = {
                 newImage.attr("src", imageUrl);
                 $("#question").html(`var answer = "the answer is: ${$("#question").attr("correct-answer")}`);
                 $(".incorrect-answer").remove();
-                setTimeout(function() {
+                window.setTimeout(function() {
                         $(".correct-answer").remove();
                 }, 1000);
                 newImage.appendTo($("#image-div"));
@@ -202,16 +202,14 @@ var theGameItself = {
         showQuestion: function() {
                 theGameItself.newQuestion();
                 $("#middle-message").html(`console.log("You got this.")`);
-                this.questionTime = setTimeout(function() {
-                        theGameItself.timesUp();
-                        }, 10000);
+                theGameItself.questionTime = window.setTimeout(theGameItself.timesUp, 10000);
         },
         // function to show the answer and do appropriate stuff when an answer is selected
         guessAttempted: function() {
-                clearTimeout(this.questionTime);
+                window.clearTimeout(theGameItself.questionTime);
                 this.guessProhibited = true;
                 theGameItself.showCorrectAnswer();
-                setTimeout(theGameItself.showQuestion, 2500);
+                window.setTimeout(theGameItself.showQuestion, 2500);
         },
         // function to draw up a new question from out of the questions array
         newQuestion: function() {
@@ -265,7 +263,7 @@ $(document).ready(function() {
         theGameItself.gameInit();
 });
 // I've left these notes at the bottom so I can refer to my process in creating the above code:
-// I want to set up the game itelf as simplified as possible this time so that it can by run by calling functions instead of a giant mess of code like the last game. I will need to use setTimeout and setInterval functions which are new to me so I need to keep everything as tidy as possible around that
+// I want to set up the game itelf as simplified as possible this time so that it can by run by calling functions instead of a giant mess of code like the last game. I will need to use window.setTimeout and window.setInterval functions which are new to me so I need to keep everything as tidy as possible around that
 
 // I'd like to pull these questions at random out of an array, with a reset function that resets the array. maybe if it pulls them out and adds them to a new array, of askedQuestions or someShit, then they can just get returned to the original array after the game is over instead of redefining the whole thing again which would also be easy though I think. function populateArray? (clears the array and fills it up with the original questions set) I do want practice though playing with arrays, so maybe I don't know whatever I'll try someShit.
 
