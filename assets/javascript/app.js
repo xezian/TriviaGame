@@ -113,6 +113,7 @@ var theGameItself = {
         gameActions: function() {
                 // on click event listener to start the game
                 $(document).on("click", "#start", function(){
+                        $("#header").empty();
                         theGameItself.showQuestion();
                         theGameItself.showScore();
                 });
@@ -207,9 +208,19 @@ var theGameItself = {
         },
         // function to put a new question on the screen for a given amount of time (10 secs)
         showQuestion: function() {
-                theGameItself.newQuestion();
-                $("#middle-message").html(`console.log("You got this.")`);
-                theGameItself.questionTime = window.setTimeout(theGameItself.timesUp, 10000);
+                if (theGameItself.todaysQuestions.length <= 0) {
+                        var startOver = $("<button/>");
+                        startOver
+                                .attr("id", "start-over")
+                                .addClass("btn btn-primary")
+                                .html("Start Over?")
+                                .appendTo("#inner-div");
+                        $("#middle-message").html(`console.log("There's no more questions!")`)         
+                } else {
+                        theGameItself.newQuestion();
+                        $("#middle-message").html(`console.log("You got this.")`);
+                        theGameItself.questionTime = window.setTimeout(theGameItself.timesUp, 10000);
+                };
         },
         // function to show the answer and do appropriate stuff when an answer is selected
         guessAttempted: function() {
@@ -222,56 +233,46 @@ var theGameItself = {
         newQuestion: function() {
                 // clear inner div
                 $("#inner-div").empty();
-                if (theGameItself.todaysQuestions.length <= 0) {
-                        var startOver = $("<button/>");
-                        startOver
-                                .attr("id", "start-over")
-                                .addClass("btn btn-primary")
-                                .html("Start Over?")
-                                .appendTo("#inner-div");
-                        $("#middle-message").html(`console.log("There's no more questions!")`)         
-                } else {
-                        // add to the questionsAmount
-                        this.guessProhibited = false;
-                        this.questionsAmount++;
-                        // find the index of a random quesiton from the array
-                        var index = theGameItself.todaysQuestions.indexOf(theGameItself.todaysQuestions[Math.floor(Math.random() * theGameItself.todaysQuestions.length)]);
-                        // cut the question object (questionPkg) out of the array using splice
-                        var questionPkg = theGameItself.todaysQuestions.splice(index, 1);
-                        // create a div for the question
-                        var question = $("<div/>");
-                        question
-                                .attr("id", "question")
-                                .attr("correct-answer", questionPkg[0].correctAnswer())
-                        // add a url for an image I can pull off the html object later
-                                .attr("image-url", questionPkg[0].image)
-                                .attr("class", "row container-fluid justify-content-center")
-                        // display the question
-                                .html(`var question = "${questionPkg[0].question}"`)
-                                .appendTo($("#inner-div"));
-                        // for loop to create individual html elements representing the answers
-                        for (var i = 0; i < questionPkg[0].answers.length; i++) {
-                                var answer = $("<button>");
-                                answer.attr("class", "btn btn-info");
-                        // display the answer
-                                var answers = $("<div/>");
-                                answers.attr("class", "row container-fluid justify-content-center");
-                                answer
-                                        .html(questionPkg[0].answers[i])
-                                        .addClass("row justify-content-center")
-                                        .css({"margin": "10px"});
-                        // if the answer is correct label it correct
-                                if (questionPkg[0].answers[i] === questionPkg[0].correctAnswer()) {
-                                        answer.addClass("correct-answer");
-                        // if the answer is incorrect label it incorrect
-                                } else {
-                                        answer.addClass("incorrect-answer");
-                                }
-                                answers.append(answer);
-                                $("#inner-div").append(answers);
+                // add to the questionsAmount
+                this.guessProhibited = false;
+                this.questionsAmount++;
+                // find the index of a random quesiton from the array
+                var index = theGameItself.todaysQuestions.indexOf(theGameItself.todaysQuestions[Math.floor(Math.random() * theGameItself.todaysQuestions.length)]);
+                // cut the question object (questionPkg) out of the array using splice
+                var questionPkg = theGameItself.todaysQuestions.splice(index, 1);
+                // create a div for the question
+                var question = $("<div/>");
+                question
+                        .attr("id", "question")
+                        .attr("correct-answer", questionPkg[0].correctAnswer())
+                // add a url for an image I can pull off the html object later
+                        .attr("image-url", questionPkg[0].image)
+                        .attr("class", "row container-fluid justify-content-center")
+                // display the question
+                        .html(`var question = "${questionPkg[0].question}"`)
+                        .appendTo($("#inner-div"));
+                // for loop to create individual html elements representing the answers
+                for (var i = 0; i < questionPkg[0].answers.length; i++) {
+                        var answer = $("<button>");
+                        answer.attr("class", "btn btn-info");
+                // display the answer
+                        var answers = $("<div/>");
+                        answers.attr("class", "row container-fluid justify-content-center");
+                        answer
+                                .text(questionPkg[0].answers[i])
+                                .addClass("row justify-content-center")
+                                .css({"margin": "10px"});
+                // if the answer is correct label it correct
+                        if (questionPkg[0].answers[i] === questionPkg[0].correctAnswer()) {
+                                answer.addClass("correct-answer");
+                // if the answer is incorrect label it incorrect
+                        } else {
+                                answer.addClass("incorrect-answer");
                         }
-                        console.log(theGameItself.todaysQuestions);
-                };
+                        answers.append(answer);
+                        $("#inner-div").append(answers);
+                }
+                console.log(theGameItself.todaysQuestions);
         },
 };
 // here is where my 'theGameItself' object ends ^
@@ -279,6 +280,11 @@ var theGameItself = {
 $(document).ready(function() {
         theGameItself.gameInit();
 });
+// Things to still do: add all the images to the appropriate project folder and add they path to the question objects
+// style out the divs a little more so they actually look nice (through jQuery or maybe just with CSS)
+// add a countdown that shows how much time is left
+// add music that plays and sounds when you click the buttons
+// make the buttons select random colors
 // I've left these notes at the bottom so I can refer to my process in creating the above code:
 // I want to set up the game itelf as simplified as possible this time so that it can by run by calling functions instead of a giant mess of code like the last game. I will need to use window.setTimeout and window.setInterval functions which are new to me so I need to keep everything as tidy as possible around that
 

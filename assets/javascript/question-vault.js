@@ -27,129 +27,129 @@ var questionVault = [
             alt: "Picture of a Mocha"
         },
         {
-            question: "Which one is 'F'?",
-            answers: ["E", "W", "A", "F"],
+            question: "In how much time was the first version of JavaScript developed?",
+            answers: ["101 Days", "12 Weeks", "A Fortnight", "10 Days"],
             correctAnswer: function() {
                 return this.answers[3];
             },
             image: "http://placehold.it/200",
-            alt: "F"
+            alt: "Picture representing a short amount of time"
         },
         {
-            question: "Which one is 'E'",
-            answers: ["E", "W", "A", "F"],
+            question: "What is the ternary operator in JavaScript?",
+            answers: ["( x ? y : z )", "(`[ x $ y ~ z ]`)", "(x) ? (y) : (z)", "y if x else z"],
             correctAnswer: function() {
                 return this.answers[0];
             },
             image: "http://placehold.it/200",
-            alt: "E"
+            alt: "Ternary operator pun"
         },
         {
-            question: "Which one is 'W'",
-            answers: ["E", "W", "A", "F"],
+            question: "Which one is known as the Standard for JavaScript?",
+            answers: ["jQuery", "ECMAScript", "Python", "CoffeeScript"],
             correctAnswer: function() {
                 return this.answers[1];
             },
             image: "http://placehold.it/200",
-            alt: "W"
+            alt: "Trendy pic associated with ECMAScript"
         },
         {
-            question: "Which one is 'R'",
-            answers: ["E", "R", "A", "F"],
+            question: "What does ECMA stand for?",
+            answers: ["Extra Classy Magical Articulator", "European Computer Manufacturer's Association", "Essential Convenience Making Administration", "Easier Code Means Action"],
             correctAnswer: function() {
                 return this.answers[1];
             },
             image: "http://placehold.it/200",
-            alt: "R"
+            alt: "Europe"
         },
         {
-            question: "Which one is 'L'",
-            answers: ["P", "W", "A", "L"],
+            question: "What is a recursive function?",
+            answers: ["A function that refers to another function inside itself", "A function that can be found multiple times in the same program", "A function where the code block is placed before the variable is declared", "A function that calls itself until it does not"],
             correctAnswer: function() {
                 return this.answers[3];
             },
             image: "http://placehold.it/200",
-            alt: "L"
+            alt: "Picture of a swan with a twisted neck"
         },
         {
-            question: "Which one is 'Q'",
-            answers: ["E", "W", "Q", "F"],
+            question: "What is the syntax in JavaScript for writing single line comments that are not read by the interpreter?",
+            answers: ["\\\\ comment ", "<!-- comment -->", "// comment", "!~ comment"],
             correctAnswer: function() {
                 return this.answers[2];
             },
             image: "http://placehold.it/200",
-            alt: "Q"
+            alt: "no comment"
         },
         {
-            question: "Which one is 'S'",
-            answers: ["S", "W", "A", "F"],
+            question: "What is the value type of greatIdeas in: var greatIdeas = [];",
+            answers: ["Array", "Function", "List", "Object"],
             correctAnswer: function() {
                 return this.answers[0];
             },
             image: "http://placehold.it/200",
-            alt: "S"
+            alt: "An array of birds"
         },
         {
-            question: "Which one is 'J'",
+            question: "What is the value type of weirdIdeas in: var weirdIdeas = {};",
             answers: ["E", "W", "A", "J"],
             correctAnswer: function() {
                 return this.answers[3];
             },
             image: "http://placehold.it/200",
-            alt: "J"
+            alt: "An object"
         },
         {
-            question: "Which one is 'K'",
-            answers: ["E", "W", "K", "F"],
+            question: "How old is JavaScript (as of Nov, 2017)?",
+            answers: ["7 Years", "11 Years", "22 Years", "33 Years"],
             correctAnswer: function() {
                 return this.answers[2];
             },
             image: "http://placehold.it/200",
-            alt: "K"
+            alt: "Picture of a 22 year old"
         },
         {
-            question: "Which one is 'N'",
-            answers: ["N", "W", "A", "F"],
+            question: "Which comapny currently manages JavaScript (Nov, 2017)",
+            answers: ["Mozilla", "Google", "Apple", "Microsoft"],
             correctAnswer: function() {
                 return this.answers[0];
             },
             image: "http://placehold.it/200",
-            alt: "N"
+            alt: "Cool Firefox picture"
         },
         {
-            question: "Which one is 'X'",
-            answers: ["E", "X", "A", "F"],
+            question: "In JavaScript, what is the value type of NaN (Not a Number)?",
+            answers: ["Boolean", "Number", "Null", "Operator"],
             correctAnswer: function() {
                 return this.answers[1];
             },
             image: "http://placehold.it/200",
-            alt: "X"
+            alt: "A picture of a number"
         },
         {
-            question: "Which one is 'M'",
-            answers: ["E", "W", "A", "M"],
+            question: "Which uses the correct filename extension for a JavaScript file?",
+            answers: ["example.jav", "example.jsc", "example.java", "example.js"],
             correctAnswer: function() {
                 return this.answers[3];
             },
             image: "http://placehold.it/200",
-            alt: "M"
+            alt: ".js"
         },
         {
-            question: "Which one is 'B'",
-            answers: ["E", "B", "R", "K"],
+            question: "What will this statement print to the console: console.log([]+(-~{}-~{}-~{}-~{})+(-~{}-~{}));",
+            answers: ["undefined", "42", "-1", "Unknown Syntax Error"],
             correctAnswer: function() {
                 return this.answers[1];
             },
             image: "http://placehold.it/200",
-            alt: "B"
+            alt: "Hitchhiker's Guide Cover"
         },
         {
-            question: "Which one is 'P'",
-            answers: ["P", "W", "A", "F"],
+            question: "What is referred to by the term 'Vanilla JavaScript'?",
+            answers: ["JavaScript unsupplemented by any frameworks", "A 'Lite' version of JavaScript that is easier to learn but less powerful", "A JavaScript framework that offers many basic functions to beginning programmers", "A flavor of Ice Cream named after JavaScript which is basically vanilla with curly brackets"],
             correctAnswer: function() {
                 return this.answers[0];
             },
             image: "http://placehold.it/200",
-            alt: "P"
+            alt: "Picture of Vanilla Iced Cream"
         },
     ]
