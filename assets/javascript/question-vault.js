@@ -6,7 +6,7 @@ var questionVault = [
                 return this.answers[2];
             },
             image: "assets/images/eich.jpg",
-            alt: "Picture of Brendan Eich"
+            alternate: "Picture of Brendan Eich"
         },
         {
             question: "Which one will return a random number between greater than or equal to zero and less than 10?",
@@ -15,7 +15,7 @@ var questionVault = [
                 return this.answers[0];
             },
             image: "assets/images/dice.jpg",
-            alt: "Picture of the original random number generators"
+            alternate: "Picture of the original random number generators"
         },
         {
             question: "What is the name JavaScript went by during development?",
@@ -24,7 +24,7 @@ var questionVault = [
                 return this.answers[2];
             },
             image: "assets/images/mocha.jpg",
-            alt: "Picture of a mocha latte"
+            alternate: "Picture of a mocha latte"
         },
         {
             question: "In how much time was the first version of JavaScript developed?",
@@ -33,7 +33,7 @@ var questionVault = [
                 return this.answers[3];
             },
             image: "assets/images/time-is-money.jpg",
-            alt: "Picture representing a short amount of time"
+            alternate: "Picture representing a short amount of time"
         },
         {
             question: "What is the ternary operator in JavaScript?",
@@ -42,7 +42,7 @@ var questionVault = [
                 return this.answers[0];
             },
             image: "assets/images/ternaryoperator.jpg",
-            alt: "Ternary operator pun"
+            alternate: "Ternary operator pun"
         },
         {
             question: "Which one is known as the Standard for JavaScript?",
@@ -51,7 +51,7 @@ var questionVault = [
                 return this.answers[1];
             },
             image: "assets/images/First_Web_Server.jpg",
-            alt: "First Web Server"
+            alternate: "First Web Server"
         },
         {
             question: "What does ECMA stand for?",
@@ -60,7 +60,7 @@ var questionVault = [
                 return this.answers[1];
             },
             image: "assets/images/europe.png",
-            alt: "Europe"
+            alternate: "Europe"
         },
         {
             question: "What is a recursive function?",
@@ -69,7 +69,7 @@ var questionVault = [
                 return this.answers[3];
             },
             image: "assets/images/recursiveswan.jpg",
-            alt: "Picture of a swan with a twisted neck"
+            alternate: "Picture of a swan with a twisted neck"
         },
         {
             question: "What is the syntax in JavaScript for writing single line comments that are not read by the interpreter?",
@@ -78,7 +78,7 @@ var questionVault = [
                 return this.answers[2];
             },
             image: "assets/images/comment.png",
-            alt: "no comment"
+            alternate: "no comment"
         },
         {
             question: "What is the value type of greatIdeas in: var greatIdeas = [];",
@@ -87,16 +87,16 @@ var questionVault = [
                 return this.answers[0];
             },
             image: "assets/images/arrayofbirds.jpg",
-            alt: "An array of birds"
+            alternate: "An array of birds"
         },
         {
             question: "What is the value type of weirdIdeas in: var weirdIdeas = {};",
-            answers: ["E", "W", "A", "J"],
+            answers: ["Function", "Array", "Operator", "Object"],
             correctAnswer: function() {
                 return this.answers[3];
             },
             image: "assets/images/Copper_object.jpg",
-            alt: "A copper object"
+            alternate: "A copper object"
         },
         {
             question: "How old is JavaScript (as of Nov, 2017)?",
@@ -105,7 +105,7 @@ var questionVault = [
                 return this.answers[2];
             },
             image: "assets/images/Avocado_toast.jpg",
-            alt: "Picture of avocado toast"
+            alternate: "Picture of avocado toast"
         },
         {
             question: "Which comapny currently manages JavaScript (Nov, 2017)",
@@ -114,7 +114,7 @@ var questionVault = [
                 return this.answers[0];
             },
             image: "assets/images/firefox.jpg",
-            alt: "Cool Firefox picture"
+            alternate: "Cool Firefox picture"
         },
         {
             question: "In JavaScript, what is the value type of NaN (Not a Number)?",
@@ -123,7 +123,7 @@ var questionVault = [
                 return this.answers[1];
             },
             image: "assets/images/number.jpg",
-            alt: "A picture of a number"
+            alternate: "A picture of a number"
         },
         {
             question: "Which uses the correct filename extension for a JavaScript file?",
@@ -132,7 +132,7 @@ var questionVault = [
                 return this.answers[3];
             },
             image: "assets/images/js.jpg",
-            alt: ".js"
+            alternate: ".js"
         },
         {
             question: "What will this statement print to the console: console.log([]+(-~{}-~{}-~{}-~{})+(-~{}-~{}));",
@@ -141,7 +141,7 @@ var questionVault = [
                 return this.answers[1];
             },
             image: "assets/images/dont-panic.jpg",
-            alt: "Don't Panic"
+            alternate: "Don't Panic"
         },
         {
             question: "What is referred to by the term 'Vanilla JavaScript'?",
@@ -150,6 +150,6 @@ var questionVault = [
                 return this.answers[0];
             },
             image: "assets/images/vanilla.jpg",
-            alt: "Picture of Vanilla Iced Cream"
+            alternate: "Picture of Vanilla Iced Cream"
         },
     ]

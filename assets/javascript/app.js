@@ -19,12 +19,15 @@ var theGameItself = {
         questionTime: null,
         // toggle whether or not we already guessed
         guessProhibited: false,
+        // fun with bootstap default colors
+        buttonColorChoices: ["info", "primary", "danger", "warning", "dark", "light", "success", "secondary"],
 // funcitons section:
         // calculate the score
         calculateScore: function() {
                 var percent = this.correctAnswers/this.questionsAmount;
                 percent = percent * 100;
-                percent = Math.round(percent, -2);
+        // TODO tried to make this give us a percent to the 100th place, like 77.74% for example, with (percent, -2) but it didn't work.
+                percent = Math.floor(percent);
                 return percent;
         },
         // function to create all of the html divs that will be used to display the game content. I think it's probably harder to do it this way and with no obvious advantages, but I wanted to see if it would work. See how little html I have in my index.html file! 
@@ -197,8 +200,10 @@ var theGameItself = {
         showCorrectAnswer: function() {
                 $("#image-div").empty();
                 var imageUrl = $("#question").attr("image-url");
+                var imageAlt = $("#question").attr("image-alt");
                 var newImage = $("<img/>");
-                newImage.attr("src", imageUrl);
+                newImage.attr("src", imageUrl)
+                        .attr("alt", imageAlt);
                 $("#question").html(`var answer = "the answer is: ${$("#question").attr("correct-answer")}`);
                 $(".incorrect-answer").remove();
                 window.setTimeout(function() {
@@ -247,6 +252,7 @@ var theGameItself = {
                         .attr("correct-answer", questionPkg[0].correctAnswer())
                 // add a url for an image I can pull off the html object later
                         .attr("image-url", questionPkg[0].image)
+                        .attr("image-alt", questionPkg[0].alternate)
                         .attr("class", "row container-fluid justify-content-center")
                 // display the question
                         .html(`var question = "${questionPkg[0].question}"`)
@@ -254,7 +260,8 @@ var theGameItself = {
                 // for loop to create individual html elements representing the answers
                 for (var i = 0; i < questionPkg[0].answers.length; i++) {
                         var answer = $("<button>");
-                        answer.attr("class", "btn btn-info");
+                        var buttonColor = theGameItself.buttonColorChoices[Math.floor(Math.random() * theGameItself.buttonColorChoices.length)];
+                        answer.attr("class", `btn btn-${buttonColor}`);
                 // display the answer
                         var answers = $("<div/>");
                         answers.attr("class", "row container-fluid justify-content-center");
@@ -282,14 +289,14 @@ $(document).ready(function() {
 });
 // Things to still do: 
 // DONE! add all the images to the appropriate project folder and add they path to the question objects
-// add the alt to the image elements with jQ$
+// DONE! add the alt to the image elements with jQ$
 // style out the divs a little more so they actually look nice (through jQuery or maybe just with CSS)
 // add a countdown that shows how much time is left
 // add music that plays and sounds when you click the buttons
-// make the buttons select random colors
+// DONE! make the buttons select random colors
+// make the answer buttons random order
+
 // I've left these notes at the bottom so I can refer to my process in creating the above code:
 // I want to set up the game itelf as simplified as possible this time so that it can by run by calling functions instead of a giant mess of code like the last game. I will need to use window.setTimeout and window.setInterval functions which are new to me so I need to keep everything as tidy as possible around that
-
 // I'd like to pull these questions at random out of an array, with a reset function that resets the array. maybe if it pulls them out and adds them to a new array, of askedQuestions or someShit, then they can just get returned to the original array after the game is over instead of redefining the whole thing again which would also be easy though I think. function populateArray? (clears the array and fills it up with the original questions set) I do want practice though playing with arrays, so maybe I don't know whatever I'll try someShit.
-
 // I will also say I believe it will be a nicer app, and more re-usable, the more easily I can switch out the content by which I mean the actual questions and answers.
