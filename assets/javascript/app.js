@@ -294,7 +294,7 @@ $(document).ready(function() {
 // add a countdown that shows how much time is left
 // add music that plays and sounds when you click the buttons
 // DONE! make the buttons select random colors
-// make the answer buttons random order
+// make the answer buttons appear in a random order (prepend/append?)
 
 // I've left these notes at the bottom so I can refer to my process in creating the above code:
 // I want to set up the game itelf as simplified as possible this time so that it can by run by calling functions instead of a giant mess of code like the last game. I will need to use window.setTimeout and window.setInterval functions which are new to me so I need to keep everything as tidy as possible around that
