@@ -280,7 +280,9 @@ var theGameItself = {
 $(document).ready(function() {
         theGameItself.gameInit();
 });
-// Things to still do: add all the images to the appropriate project folder and add they path to the question objects
+// Things to still do: 
+// DONE! add all the images to the appropriate project folder and add they path to the question objects
+// add the alt to the image elements with jQ$
 // style out the divs a little more so they actually look nice (through jQuery or maybe just with CSS)
 // add a countdown that shows how much time is left
 // add music that plays and sounds when you click the buttons

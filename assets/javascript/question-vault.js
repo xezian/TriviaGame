@@ -5,8 +5,8 @@ var questionVault = [
             correctAnswer: function() {
                 return this.answers[2];
             },
-            image: "http://placehold.it/200",
-            alt: "picture of Brendan Eich"
+            image: "assets/images/eich.jpg",
+            alt: "Picture of Brendan Eich"
         },
         {
             question: "Which one will return a random number between greater than or equal to zero and less than 10?",
@@ -14,8 +14,8 @@ var questionVault = [
             correctAnswer: function() {
                 return this.answers[0];
             },
-            image: "http://placehold.it/200",
-            alt: "Very random picture"
+            image: "assets/images/dice.jpg",
+            alt: "Picture of the original random number generators"
         },
         {
             question: "What is the name JavaScript went by during development?",
@@ -23,8 +23,8 @@ var questionVault = [
             correctAnswer: function() {
                 return this.answers[2];
             },
-            image: "http://placehold.it/200",
-            alt: "Picture of a Mocha"
+            image: "assets/images/mocha.jpg",
+            alt: "Picture of a mocha latte"
         },
         {
             question: "In how much time was the first version of JavaScript developed?",
@@ -32,7 +32,7 @@ var questionVault = [
             correctAnswer: function() {
                 return this.answers[3];
             },
-            image: "http://placehold.it/200",
+            image: "assets/images/time-is-money.jpg",
             alt: "Picture representing a short amount of time"
         },
         {
@@ -41,7 +41,7 @@ var questionVault = [
             correctAnswer: function() {
                 return this.answers[0];
             },
-            image: "http://placehold.it/200",
+            image: "assets/images/ternaryoperator.jpg",
             alt: "Ternary operator pun"
         },
         {
@@ -50,8 +50,8 @@ var questionVault = [
             correctAnswer: function() {
                 return this.answers[1];
             },
-            image: "http://placehold.it/200",
-            alt: "Trendy pic associated with ECMAScript"
+            image: "assets/images/First_Web_Server.jpg",
+            alt: "First Web Server"
         },
         {
             question: "What does ECMA stand for?",
@@ -59,7 +59,7 @@ var questionVault = [
             correctAnswer: function() {
                 return this.answers[1];
             },
-            image: "http://placehold.it/200",
+            image: "assets/images/europe.png",
             alt: "Europe"
         },
         {
@@ -68,7 +68,7 @@ var questionVault = [
             correctAnswer: function() {
                 return this.answers[3];
             },
-            image: "http://placehold.it/200",
+            image: "assets/images/recursiveswan.jpg",
             alt: "Picture of a swan with a twisted neck"
         },
         {
@@ -77,7 +77,7 @@ var questionVault = [
             correctAnswer: function() {
                 return this.answers[2];
             },
-            image: "http://placehold.it/200",
+            image: "assets/images/comment.png",
             alt: "no comment"
         },
         {
@@ -86,7 +86,7 @@ var questionVault = [
             correctAnswer: function() {
                 return this.answers[0];
             },
-            image: "http://placehold.it/200",
+            image: "assets/images/arrayofbirds.jpg",
             alt: "An array of birds"
         },
         {
@@ -95,8 +95,8 @@ var questionVault = [
             correctAnswer: function() {
                 return this.answers[3];
             },
-            image: "http://placehold.it/200",
-            alt: "An object"
+            image: "assets/images/Copper_object.jpg",
+            alt: "A copper object"
         },
         {
             question: "How old is JavaScript (as of Nov, 2017)?",
@@ -104,8 +104,8 @@ var questionVault = [
             correctAnswer: function() {
                 return this.answers[2];
             },
-            image: "http://placehold.it/200",
-            alt: "Picture of a 22 year old"
+            image: "assets/images/Avocado_toast.jpg",
+            alt: "Picture of avocado toast"
         },
         {
             question: "Which comapny currently manages JavaScript (Nov, 2017)",
@@ -113,7 +113,7 @@ var questionVault = [
             correctAnswer: function() {
                 return this.answers[0];
             },
-            image: "http://placehold.it/200",
+            image: "assets/images/firefox.jpg",
             alt: "Cool Firefox picture"
         },
         {
@@ -122,7 +122,7 @@ var questionVault = [
             correctAnswer: function() {
                 return this.answers[1];
             },
-            image: "http://placehold.it/200",
+            image: "assets/images/number.jpg",
             alt: "A picture of a number"
         },
         {
@@ -131,7 +131,7 @@ var questionVault = [
             correctAnswer: function() {
                 return this.answers[3];
             },
-            image: "http://placehold.it/200",
+            image: "assets/images/js.jpg",
             alt: ".js"
         },
         {
@@ -140,8 +140,8 @@ var questionVault = [
             correctAnswer: function() {
                 return this.answers[1];
             },
-            image: "http://placehold.it/200",
-            alt: "Hitchhiker's Guide Cover"
+            image: "assets/images/dont-panic.jpg",
+            alt: "Don't Panic"
         },
         {
             question: "What is referred to by the term 'Vanilla JavaScript'?",
@@ -149,7 +149,7 @@ var questionVault = [
             correctAnswer: function() {
                 return this.answers[0];
             },
-            image: "http://placehold.it/200",
+            image: "assets/images/vanilla.jpg",
             alt: "Picture of Vanilla Iced Cream"
         },
     ]
