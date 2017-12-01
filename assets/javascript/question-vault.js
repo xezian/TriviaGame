@@ -1,7 +1,7 @@
 var questionVault = [
         {
             question: "Who wrote the first version of JavaScript?",
-            answers: ["Peter Dinklage", "Mary Poppins", "Brendan Eich", "Benjamin Franklin"],
+            answers: ["Peter Dinklage", "Susan Wojcicki", "Brendan Eich", "Mark Zuckerberg"],
             correctAnswer: function() {
                 return this.answers[2];
             },
@@ -9,7 +9,7 @@ var questionVault = [
             alternate: "Picture of Brendan Eich"
         },
         {
-            question: "Which one will return a random number between greater than or equal to zero and less than 10?",
+            question: "Which one will return a random number greater than or equal to zero and less than 10?",
             answers: ["Math.floor(Math.random() * 10)", "Math.ceil(Math.random() * 10)", "Math.floor(Math.random(0,10))", "Math.random(10)"],
             correctAnswer: function() {
                 return this.answers[0];
@@ -131,7 +131,7 @@ var questionVault = [
             correctAnswer: function() {
                 return this.answers[3];
             },
-            image: "assets/images/js.jpg",
+            image: "assets/images/js.jpeg",
             alternate: ".js"
         },
         {
