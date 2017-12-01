@@ -95,7 +95,7 @@ var questionVault = [
             correctAnswer: function() {
                 return this.answers[3];
             },
-            image: "assets/images/Copper_object.jpg",
+            image: "assets/images/Copper_object.JPG",
             alternate: "A copper object"
         },
         {
